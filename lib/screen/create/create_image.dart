@@ -4,6 +4,7 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
@@ -112,10 +113,16 @@ class _RoomImageSetState extends State<RoomImageSet> {
                                   "mission": BigInfoProvider.mission,
                                   "roomImage": BigInfoProvider.roomImage,
                                   "code": BigInfoProvider.code,
-                                  "users_id": [UserProvider.userId],
-                                  "users_name": [UserProvider.userName],
+                                  "users_id": [
+                                    FirebaseAuth.instance.currentUser!.uid
+                                  ],
+                                  "users_name": [
+                                    FirebaseAuth
+                                        .instance.currentUser!.displayName
+                                  ],
                                   'users_job': {
-                                    UserProvider.userId: BigInfoProvider.job
+                                    FirebaseAuth.instance.currentUser!.uid:
+                                        BigInfoProvider.job
                                   },
                                 });
 
