@@ -2,6 +2,7 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/foundation.dart';
@@ -89,32 +90,37 @@ class _RoomImageSetState extends State<RoomImageSet> {
                                 image: FileImage(File(_pickedFile!.path)),
                                 fit: BoxFit.cover),
                           ),
-                        ),
-                        const SizedBox(height: 38),
-                        Container(
-                          width: 343,
-                          height: 45,
-                          margin: const EdgeInsets.only(left: 25, right: 25),
-                          child: ElevatedButton(
-                            onPressed: () async {
-                              _generateRandom4Digit();
-                              final docRef = FirebaseFirestore.instance
-                                  .collection("Biginfo")
-                                  .doc();
-                              await docRef.set({
-                                registerTimeFieldName:
-                                    FieldValue.serverTimestamp(),
-                                idFieldName: docRef.id,
-                                "title": BigInfoProvider.title,
-                                "mission": BigInfoProvider.mission,
-                                "roomImage": BigInfoProvider.roomImage,
-                                "code": BigInfoProvider.code,
-                                "users_id": [UserProvider.userId],
-                                "users_name": [UserProvider.userName],
-                                'users_job': {
-                                  UserProvider.userId: BigInfoProvider.job
-                                },
-                              });
+                          SizedBox(height: 38),
+                          Container(
+                            width: 343,
+                            height: 45,
+                            margin: EdgeInsets.only(left: 25, right: 25),
+                            child: ElevatedButton(
+                              onPressed: () async {
+                                _generateRandom4Digit();
+                                final docRef = FirebaseFirestore.instance
+                                    .collection("Biginfo")
+                                    .doc();
+                                await docRef.set({
+                                  registerTimeFieldName:
+                                      FieldValue.serverTimestamp(),
+                                  idFieldName: docRef.id,
+                                  "title": BigInfoProvider.title,
+                                  "mission": BigInfoProvider.mission,
+                                  "roomImage": BigInfoProvider.roomImage,
+                                  "code": BigInfoProvider.code,
+                                  "users_id": [
+                                    FirebaseAuth.instance.currentUser!.uid
+                                  ],
+                                  "users_name": [
+                                    FirebaseAuth
+                                        .instance.currentUser!.displayName
+                                  ],
+                                  'users_job': {
+                                    FirebaseAuth.instance.currentUser!.uid:
+                                        BigInfoProvider.job
+                                  },
+                                });
 
                               final docRef2 = FirebaseFirestore.instance
                                   .collection("Smallinfo")
