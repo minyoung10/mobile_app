@@ -1,0 +1,84 @@
+name: flutter_application_1
+description: "A new Flutter project."
+# The following line prevents the package from being accidentally published to
+# pub.dev using `flutter pub publish`. This is preferred for private packages.
+publish_to: 'none' # Remove this line if you wish to publish to pub.dev
+
+# The following defines the version and build number for your application.
+# A version number is three numbers separated by dots, like 1.2.43
+# followed by an optional build number separated by a +.
+# Both the version and the builder number may be overridden in flutter
+# build by specifying --build-name and --build-number, respectively.
+# In Android, build-name is used as versionName while build-number used as versionCode.
+# Read more about Android versioning at https://developer.android.com/studio/publish/versioning
+# In iOS, build-name is used as CFBundleShortVersionString while build-number is used as CFBundleVersion.
+# Read more about iOS versioning at
+# https://developer.apple.com/library/archive/documentation/General/Reference/InfoPlistKeyReference/Articles/CoreFoundationKeys.html
+# In Windows, build-name is used as the major, minor, and patch parts
+# of the product and file versions while build-number is used as the build suffix.
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.0.5 <4.0.0'
+
+# Dependencies specify other packages that your package needs in order to work.
+# To automatically upgrade your package dependencies to the latest versions
+# consider running `flutter pub upgrade --major-versions`. Alternatively,
+# dependencies can be manually updated by changing the version numbers below to
+# the latest version available on pub.dev. To see which dependencies have newer
+# versions available, run `flutter pub outdated`.
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+  # The following adds the Cupertino Icons font to your application.
+  # Use with the CupertinoIcons class for iOS style icons.
+  cupertino_icons: ^1.0.2
+  firebase_core: ^2.23.0
+  cloud_firestore: ^4.13.2
+  firebase_auth: ^4.14.1
+  page_view_dot_indicator: ^2.3.0
+  firebase_storage: ^11.5.2
+  image_picker: ^1.0.4
+  intl: ^0.18.1
+  video_player: ^2.8.1
+  calendar_date_picker2: ^0.5.3
+  google_sign_in: ^6.1.6
+  google_ml_kit: ^0.16.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_lints: ^2.0.0
+
+flutter:
+
+  uses-material-design: true
+
+  assets:
+    - assets/
+    - assets/images/
+
+  fonts:
+    - family: Pretendard
+      fonts:
+        - asset: fonts/Pretendard-Thin.ttf
+          weight: 100
+        - asset: fonts/Pretendard-ExtraLight.ttf
+          weight: 200
+        - asset: fonts/Pretendard-Light.ttf
+          weight: 300
+        - asset: fonts/Pretendard-Regular.ttf
+          weight: 400
+        - asset: fonts/Pretendard-Medium.ttf
+          weight: 500
+        - asset: fonts/Pretendard-SemiBold.ttf
+          weight: 600
+        - asset: fonts/Pretendard-Bold.ttf
+          weight: 700
+        - asset: fonts/Pretendard-ExtraBold.ttf
+          weight: 800
+        - asset: fonts/Pretendard-Black.ttf
+          weight: 900
