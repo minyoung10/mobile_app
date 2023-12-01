@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 final basicTheme = ThemeData(
-  textTheme: TextTheme(
+  textTheme: const TextTheme(
     displayLarge: TextStyle(
         fontFamily: 'Pretendard', fontSize: 24, fontWeight: FontWeight.w500),
   ),

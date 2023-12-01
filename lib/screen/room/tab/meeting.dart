@@ -38,20 +38,20 @@ class MeetingTabState extends State<MeetingTab> {
             color: Colors.white,
             child: SingleChildScrollView(
               child: Container(
-                margin: EdgeInsets.only(left: 25, right: 25, top: 20),
+                margin: const EdgeInsets.only(left: 25, right: 25, top: 20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     GridView.builder(
-                      padding: EdgeInsets.only(top: 0),
-                      gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                      padding: const EdgeInsets.only(top: 0),
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                         crossAxisCount: 3,
                         crossAxisSpacing: 0,
                         mainAxisSpacing: 0,
                       ),
                       itemCount: roomData['users_name'].length,
                       shrinkWrap: true,
-                      physics: NeverScrollableScrollPhysics(),
+                      physics: const NeverScrollableScrollPhysics(),
                       itemBuilder: (BuildContext context, int index) {
                         final temp = roomData['users_id'][index];
 
@@ -61,7 +61,7 @@ class MeetingTabState extends State<MeetingTab> {
                             DateFormat('yyyy-MM-dd HH:mm').format(dateTime);
                         return GestureDetector(
                             onTap: () {},
-                            child: Container(
+                            child: SizedBox(
                               width: 111,
                               height: 111,
                               child: Stack(
@@ -103,7 +103,7 @@ class MeetingTabState extends State<MeetingTab> {
                             ));
                       },
                     ),
-                    SizedBox(height: 40),
+                    const SizedBox(height: 40),
                   ],
                 ),
               ),

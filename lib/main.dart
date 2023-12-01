@@ -25,8 +25,8 @@ class Fistpage extends StatelessWidget {
       theme: ThemeData(primaryColor: const Color.fromRGBO(54, 209, 0, 1)),
       initialRoute: '/login',
       routes: {
-        '/': (BuildContext context) => BottomNavigation(),
-        '/login': (BuildContext context) => LoginPage(),
+        '/': (BuildContext context) => const BottomNavigation(),
+        '/login': (BuildContext context) => const LoginPage(),
       },
     );
   }
