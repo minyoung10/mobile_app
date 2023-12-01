@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_literals_to_create_immutables, prefer_const_constructors
-
 import 'package:flutter/material.dart';
 import '../../themepage/theme.dart';
 import 'home.dart';
@@ -37,7 +35,7 @@ class BottomNavigationState extends State<BottomNavigation> {
         ),
         bottomNavigationBar: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,
-          items: <BottomNavigationBarItem>[
+          items: const <BottomNavigationBarItem>[
             BottomNavigationBarItem(label: "홈", icon: Icon(Icons.home)),
             BottomNavigationBarItem(
               label: "검색",
@@ -54,8 +52,8 @@ class BottomNavigationState extends State<BottomNavigation> {
           ],
           currentIndex: selectedIndex,
           selectedItemColor: Theme.of(context).primaryColor,
-          unselectedItemColor: Color.fromRGBO(128, 128, 128, 1),
-          backgroundColor: Color.fromRGBO(255, 255, 255, 1),
+          unselectedItemColor: const Color.fromRGBO(128, 128, 128, 1),
+          backgroundColor: const Color.fromRGBO(255, 255, 255, 1),
           onTap: onItemTapped,
           selectedLabelStyle: pinkw500.copyWith(
               fontSize: 12, letterSpacing: -0.24), // 선택된 아이템의 텍스트 크기 설정

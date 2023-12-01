@@ -1,5 +1,3 @@
-// ignore_for_file: use_build_context_synchronously
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -18,11 +16,11 @@ class _ProfileScreenState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromRGBO(250, 250, 250, 1),
+      backgroundColor: const Color.fromRGBO(250, 250, 250, 1),
       body: Column(
         children: [
           Container(
-            margin: EdgeInsets.only(top: 76),
+            margin: const EdgeInsets.only(top: 76),
             color: const Color(0xFFFAFAFA),
             child: Column(
               children: [
@@ -201,10 +199,10 @@ class _ProfileScreenState extends State<Profile> {
                         ),
                       ),
                       Container(
-                        margin: EdgeInsets.only(right: 25),
+                        margin: const EdgeInsets.only(right: 25),
                         child: Row(
                           children: [
-                            Spacer(),
+                            const Spacer(),
                             TextButton(
                               onPressed: () async {
                                 await FirebaseAuth.instance.signOut();
@@ -212,7 +210,7 @@ class _ProfileScreenState extends State<Profile> {
                                 Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: ((context) => LoginPage())));
+                                        builder: ((context) => const LoginPage())));
                               },
                               style: TextButton.styleFrom(),
                               child: Text(
@@ -220,8 +218,8 @@ class _ProfileScreenState extends State<Profile> {
                                 style: greyw500.copyWith(
                                   fontSize: 14.0,
                                   decoration: TextDecoration.underline,
-                                  color: Color(0xFF808080),
-                                  decorationColor: Color(0xFF808080),
+                                  color: const Color(0xFF808080),
+                                  decorationColor: const Color(0xFF808080),
                                 ),
                               ),
                             ),

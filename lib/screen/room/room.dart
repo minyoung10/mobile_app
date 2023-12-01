@@ -1,14 +1,6 @@
-// ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
-import 'dart:io';
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_core/firebase_core.dart';
-import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:intl/intl.dart';
 
-import '../../info/user.dart';
 import '../../themepage/theme.dart';
 import '../bottom/home.dart';
 import 'tab/accounting.dart';
@@ -74,7 +66,7 @@ class _RoomState extends State<Room> with SingleTickerProviderStateMixin {
                   children: [
                     Stack(
                       children: [
-                        Container(
+                        SizedBox(
                           width: double.infinity,
                           height: 349,
                           child: ColorFiltered(
@@ -97,7 +89,7 @@ class _RoomState extends State<Room> with SingleTickerProviderStateMixin {
                                   context, ModalRoute.withName('/'));
                             },
                             color: Colors.white,
-                            icon: Icon(
+                            icon: const Icon(
                               Icons.arrow_back_ios_rounded,
                             ),
                           ),
@@ -109,7 +101,7 @@ class _RoomState extends State<Room> with SingleTickerProviderStateMixin {
                             onTap: () async {
                               _showBottomSheet(context, '1');
                             },
-                            child: Container(
+                            child: SizedBox(
                               width: 30,
                               height: 18,
                               child: Image.asset('assets/images/kebap.png'),
@@ -119,12 +111,10 @@ class _RoomState extends State<Room> with SingleTickerProviderStateMixin {
                         Positioned(
                           top: 236,
                           left: 25,
-                          child: Container(
-                            child: Text(roomData['title'],
-                                style: whitew700.copyWith(
-                                  fontSize: 24.0,
-                                )),
-                          ),
+                          child: Text(roomData['title'],
+                              style: whitew700.copyWith(
+                                fontSize: 24.0,
+                              )),
                         ),
                         Positioned(
                           top: 270,
@@ -135,13 +125,13 @@ class _RoomState extends State<Room> with SingleTickerProviderStateMixin {
                             decoration: BoxDecoration(
                               borderRadius:
                                   BorderRadius.circular(3), // 반지름 값을 설정합니다.
-                              color: Color.fromRGBO(255, 239, 244, 1),
+                              color: const Color.fromRGBO(255, 239, 244, 1),
                             ),
                             child: Row(
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 Container(
-                                  margin: EdgeInsets.only(left: 12, bottom: 3),
+                                  margin: const EdgeInsets.only(left: 12, bottom: 3),
                                   child: Text(roomData['mission'],
                                       style: pinkw700.copyWith(
                                         fontSize: 16.0,
@@ -152,8 +142,8 @@ class _RoomState extends State<Room> with SingleTickerProviderStateMixin {
                           ),
                         ),
                         Container(
-                          margin: EdgeInsets.only(top: 317),
-                          decoration: BoxDecoration(
+                          margin: const EdgeInsets.only(top: 317),
+                          decoration: const BoxDecoration(
                             color: Colors.white,
                             borderRadius: BorderRadius.only(
                               topLeft: Radius.circular(23),
@@ -166,12 +156,12 @@ class _RoomState extends State<Room> with SingleTickerProviderStateMixin {
                                 mainAxisAlignment:
                                     MainAxisAlignment.spaceAround,
                                 children: [
-                                  Container(
+                                  SizedBox(
                                     width: 379,
                                     height: 50,
                                     child: TabBar(
                                       indicator: UnderlineTabIndicator(
-                                        borderSide: BorderSide(
+                                        borderSide: const BorderSide(
                                           width: 2, // Bottom line width
                                         ), // Bottom line padding
                                         borderRadius: BorderRadius.circular(
@@ -179,19 +169,19 @@ class _RoomState extends State<Room> with SingleTickerProviderStateMixin {
                                       ),
                                       indicatorWeight: 3,
                                       indicatorColor:
-                                          Color.fromRGBO(36, 38, 37, 1),
+                                          const Color.fromRGBO(36, 38, 37, 1),
                                       indicatorSize: TabBarIndicatorSize.label,
-                                      indicatorPadding: EdgeInsets.only(
+                                      indicatorPadding: const EdgeInsets.only(
                                           bottom:
                                               1), // Adjust horizontal padding
                                       controller: _tabController,
                                       // label color
-                                      labelColor: Color.fromRGBO(36, 38, 37, 1),
+                                      labelColor: const Color.fromRGBO(36, 38, 37, 1),
                                       // unselected label color
                                       unselectedLabelColor:
-                                          Color.fromARGB(255, 151, 151, 151),
+                                          const Color.fromARGB(255, 151, 151, 151),
 
-                                      tabs: [
+                                      tabs: const [
                                         SizedBox(
                                           width: 90,
                                           child: Tab(
@@ -253,7 +243,7 @@ class _RoomState extends State<Room> with SingleTickerProviderStateMixin {
                                   ),
                                 ],
                               ),
-                              Divider(
+                              const Divider(
                                   height: 0,
                                   color: Color.fromRGBO(170, 170, 170, 1))
                             ],
@@ -290,24 +280,24 @@ class _RoomState extends State<Room> with SingleTickerProviderStateMixin {
     showModalBottomSheet(
       context: context,
       backgroundColor: Colors.transparent,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(23.0)),
       ),
       builder: (BuildContext context) {
-        return Container(
+        return SizedBox(
           height: 160,
           child: Container(
-            margin: EdgeInsets.only(left: 25),
+            margin: const EdgeInsets.only(left: 25),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Container(
+                SizedBox(
                   width: 343,
                   height: 45,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      foregroundColor: Color(0xFF242625),
-                      backgroundColor: Color.fromRGBO(250, 250, 250, 1),
+                      foregroundColor: const Color(0xFF242625),
+                      backgroundColor: const Color.fromRGBO(250, 250, 250, 1),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12), // 모서리 반경 설정
                       ),
@@ -316,7 +306,7 @@ class _RoomState extends State<Room> with SingleTickerProviderStateMixin {
                       Navigator.of(context).pop();
                       _showDeleteConfirmationDialog(context);
                     },
-                    child: Text(
+                    child: const Text(
                       "삭제",
                       style: TextStyle(
                         fontFamily: 'Pretendard',
@@ -327,14 +317,14 @@ class _RoomState extends State<Room> with SingleTickerProviderStateMixin {
                     ),
                   ),
                 ),
-                SizedBox(height: 14),
-                Container(
+                const SizedBox(height: 14),
+                SizedBox(
                   width: 343,
                   height: 45,
                   child: ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      foregroundColor: Color(0xFF242625),
-                      backgroundColor: Color.fromRGBO(250, 250, 250, 1),
+                      foregroundColor: const Color(0xFF242625),
+                      backgroundColor: const Color.fromRGBO(250, 250, 250, 1),
                       shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(12), // 모서리 반경 설정
                       ),
@@ -342,7 +332,7 @@ class _RoomState extends State<Room> with SingleTickerProviderStateMixin {
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
-                    child: Text(
+                    child: const Text(
                       "취소",
                       style: TextStyle(
                         fontFamily: 'Pretendard',
@@ -367,9 +357,9 @@ class _RoomState extends State<Room> with SingleTickerProviderStateMixin {
       builder: (BuildContext context) {
         return AlertDialog(
           shadowColor: Colors.transparent,
-          contentPadding: EdgeInsets.all(0), // padding을 0으로 설정
-          insetPadding: EdgeInsets.all(16), // 화면 주변 padding 설정
-          backgroundColor: Color.fromRGBO(250, 250, 250, 1),
+          contentPadding: const EdgeInsets.all(0), // padding을 0으로 설정
+          insetPadding: const EdgeInsets.all(16), // 화면 주변 padding 설정
+          backgroundColor: const Color.fromRGBO(250, 250, 250, 1),
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(12),
           ),
@@ -379,20 +369,20 @@ class _RoomState extends State<Room> with SingleTickerProviderStateMixin {
             child: Column(
               // mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                SizedBox(height: 29),
+                const SizedBox(height: 29),
                 Text("이 글을 정말 삭제하시겠어요?",
                     style: blackw500.copyWith(fontSize: 18)),
-                SizedBox(height: 31),
+                const SizedBox(height: 31),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
-                    Container(
+                    SizedBox(
                       width: 131,
                       height: 35,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           shadowColor: Colors.transparent,
-                          backgroundColor: Color(0xFF808080),
+                          backgroundColor: const Color(0xFF808080),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(6), // 모서리 반경 설정
                           ),
@@ -404,13 +394,13 @@ class _RoomState extends State<Room> with SingleTickerProviderStateMixin {
                         },
                       ),
                     ),
-                    Container(
+                    SizedBox(
                       width: 131,
                       height: 35,
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
                           shadowColor: Colors.transparent,
-                          backgroundColor: Color(0xFFEF597D),
+                          backgroundColor: const Color(0xFFEF597D),
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(6), // 모서리 반경 설정
                           ),

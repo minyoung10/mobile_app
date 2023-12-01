@@ -1,4 +1,3 @@
-// ignore_for_file: prefer_const_constructors
 import 'dart:io';
 import 'dart:math';
 
@@ -21,7 +20,7 @@ class AddNotification extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  _AddNotificationState createState() => _AddNotificationState();
+  State<AddNotification> createState() => _AddNotificationState();
 }
 
 class _AddNotificationState extends State<AddNotification> {
@@ -37,10 +36,9 @@ class _AddNotificationState extends State<AddNotification> {
   XFile? _pickedFile;
   @override
   Widget build(BuildContext context) {
-    final _imageSize = MediaQuery.of(context).size.width / 4;
     return Scaffold(
       appBar: AppBar(
-        title: Text('공지 작성'),
+        title: const Text('공지 작성'),
       ),
       body: SingleChildScrollView(
         child: Padding(
@@ -48,18 +46,18 @@ class _AddNotificationState extends State<AddNotification> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Text('제목을 입력해 주세요'),
+              const Text('제목을 입력해 주세요'),
               TextFormField(
                 maxLength: 15,
                 key: const ValueKey(1),
                 style: blackw500.copyWith(fontSize: 24),
                 decoration: InputDecoration(
                   //준) 선택되지 않은 밑줄 속성
-                  enabledBorder: UnderlineInputBorder(
+                  enabledBorder: const UnderlineInputBorder(
                     borderSide: BorderSide(color: Color(0xFFEFEFEF)),
                   ),
                   //준) 선택된 밑줄 속성 둘을 일치시켰음
-                  focusedBorder: UnderlineInputBorder(
+                  focusedBorder: const UnderlineInputBorder(
                     borderSide: BorderSide(color: Color(0xFFEFEFEF)),
                   ),
                   hintText: "예) 전산전자 공학부 임원단",
@@ -67,7 +65,7 @@ class _AddNotificationState extends State<AddNotification> {
                   suffixIcon: _isTextFieldEmpty
                       ? null
                       : IconButton(
-                          icon: Icon(Icons.cancel),
+                          icon: const Icon(Icons.cancel),
                           iconSize: 15,
                           color: Colors.grey,
                           onPressed: () {
@@ -89,23 +87,23 @@ class _AddNotificationState extends State<AddNotification> {
                   _enteredText = value!;
                 },
               ),
-              Text('내용을 입력해 주세요'),
-              SizedBox(height: 5),
+              const Text('내용을 입력해 주세요'),
+              const SizedBox(height: 5),
               TextField(
                 controller: _textFieldController,
                 maxLength: 300,
                 maxLines: 10,
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
-                    borderSide: BorderSide(width: 0.3, color: Colors.grey),
+                    borderSide: const BorderSide(width: 0.3, color: Colors.grey),
                     borderRadius: BorderRadius.circular(15),
                   ),
                   filled: true,
                   fillColor: Colors.white,
                 ),
               ),
-              SizedBox(height: 10),
-              Text('사진을 추가해 주세요'),
+              const SizedBox(height: 10),
+              const Text('사진을 추가해 주세요'),
               GestureDetector(
                   onTap: () {
                     _getPhotoLibraryImage();
@@ -140,7 +138,7 @@ class _AddNotificationState extends State<AddNotification> {
                             ),
                           ),
                   ])),
-              SizedBox(height: 40),
+              const SizedBox(height: 40),
               Container(
                 width: 343,
                 height: 45,
@@ -163,7 +161,7 @@ class _AddNotificationState extends State<AddNotification> {
                         borderRadius:
                             BorderRadius.circular(12), // 버튼 모서리 둥글기 설정
                       ),
-                      backgroundColor: Color.fromRGBO(54, 209, 0, 1)),
+                      backgroundColor: const Color.fromRGBO(54, 209, 0, 1)),
                   child: const Text(
                     '완료하기',
                     style: TextStyle(
@@ -219,7 +217,7 @@ class _AddNotificationState extends State<AddNotification> {
     // 선택한 파일에서 이미지 데이터 읽기
     final imageBytes = await File(_pickedFile!.path).readAsBytes();
     // Firebase Storage에 이미지를 업로드할 위치에 대한 참조 생성
-    final imageName = DateTime.now().microsecond.toString() + '.jpg';
+    final imageName = '${DateTime.now().microsecond}.jpg';
     final storageReference = FirebaseStorage.instance.ref(imageName);
 
     try {

@@ -7,7 +7,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../../../info/user.dart';
 import '../../../themepage/theme.dart';
 
 class AccountingTab extends StatefulWidget {
@@ -247,7 +246,7 @@ class AccountingTabState extends State<AccountingTab> {
     }
 
     final imageBytes = await File(_pickedFile!.path).readAsBytes();
-    final imageName = DateTime.now().second.toString() + '.jpg';
+    final imageName = '${DateTime.now().second}.jpg';
     final storageReference = FirebaseStorage.instance.ref(imageName);
 
     try {
@@ -259,8 +258,6 @@ class AccountingTabState extends State<AccountingTab> {
       setState(() {
         _uploadedImageUrl = imageUrl;
       });
-      print(roomDataId);
-      print(userindex);
       final docRef = firestore.collection('Biginfo').doc(roomDataId);
       DocumentSnapshot snapshot = await docRef.get();
       Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;

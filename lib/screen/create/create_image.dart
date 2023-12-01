@@ -1,5 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
 import 'dart:io';
 import 'dart:math';
 
@@ -16,8 +14,9 @@ import '../../themepage/theme.dart';
 import '../room/room.dart';
 
 class RoomImageSet extends StatefulWidget {
+  const RoomImageSet({super.key});
   @override
-  _RoomImageSetState createState() => _RoomImageSetState();
+  State<RoomImageSet> createState() => _RoomImageSetState();
 }
 
 class _RoomImageSetState extends State<RoomImageSet> {
@@ -31,7 +30,6 @@ class _RoomImageSetState extends State<RoomImageSet> {
   XFile? _pickedFile;
   @override
   Widget build(BuildContext context) {
-    final _imageSize = MediaQuery.of(context).size.width / 4;
     return StatefulBuilder(
       builder: (context, setStateInside) {
         if (_pickedFile != null) {
@@ -39,129 +37,127 @@ class _RoomImageSetState extends State<RoomImageSet> {
             height: 485,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(23), color: Colors.white),
-            child: Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Center(
-                    child: Container(
-                      margin: EdgeInsets.only(top: 18),
-                      width: 48,
-                      height: 3.346,
-                      decoration: BoxDecoration(
-                        color: Color(0xFFAAAAAA),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: Container(
+                    margin: const EdgeInsets.only(top: 18),
+                    width: 48,
+                    height: 3.346,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFAAAAAA),
+                      borderRadius: BorderRadius.circular(10),
                     ),
                   ),
-                  Container(
-                    margin: EdgeInsets.only(left: 25, top: 26),
-                    child: Text(
-                      '방에 들어갈 이미지는 무엇인가요?',
-                      style: TextStyle(
-                          fontSize: 18,
-                          fontWeight: FontWeight.w700,
-                          letterSpacing: -1),
-                    ),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(left: 25, top: 26),
+                  child: const Text(
+                    '방에 들어갈 이미지는 무엇인가요?',
+                    style: TextStyle(
+                        fontSize: 18,
+                        fontWeight: FontWeight.w700,
+                        letterSpacing: -1),
                   ),
-                  Container(
-                    margin: EdgeInsets.only(left: 25),
-                    child: Text(
-                      "이미지를 가져올 곳을 선택해주세요",
-                      style: TextStyle(
-                          color: Color.fromRGBO(170, 170, 170, 1),
-                          fontSize: 14,
-                          fontWeight: FontWeight.w500,
-                          letterSpacing: -1),
-                    ),
+                ),
+                Container(
+                  margin: const EdgeInsets.only(left: 25),
+                  child: const Text(
+                    "이미지를 가져올 곳을 선택해주세요",
+                    style: TextStyle(
+                        color: Color.fromRGBO(170, 170, 170, 1),
+                        fontSize: 14,
+                        fontWeight: FontWeight.w500,
+                        letterSpacing: -1),
                   ),
-                  SizedBox(height: 16),
-                  GestureDetector(
-                      onTap: () {
-                        _getPhotoLibraryImage();
-                      },
-                      child: Column(
-                        children: [
-                          Container(
-                            width: 343,
-                            height: 256,
-                            decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(15),
-                              shape: BoxShape.rectangle,
-                              image: DecorationImage(
-                                  image: FileImage(File(_pickedFile!.path)),
-                                  fit: BoxFit.cover),
-                            ),
+                ),
+                const SizedBox(height: 16),
+                GestureDetector(
+                    onTap: () {
+                      _getPhotoLibraryImage();
+                    },
+                    child: Column(
+                      children: [
+                        Container(
+                          width: 343,
+                          height: 256,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            shape: BoxShape.rectangle,
+                            image: DecorationImage(
+                                image: FileImage(File(_pickedFile!.path)),
+                                fit: BoxFit.cover),
                           ),
-                          SizedBox(height: 38),
-                          Container(
-                            width: 343,
-                            height: 45,
-                            margin: EdgeInsets.only(left: 25, right: 25),
-                            child: ElevatedButton(
-                              onPressed: () async {
-                                _generateRandom4Digit();
-                                final docRef = FirebaseFirestore.instance
-                                    .collection("Biginfo")
-                                    .doc();
-                                await docRef.set({
-                                  registerTimeFieldName:
-                                      FieldValue.serverTimestamp(),
-                                  idFieldName: docRef.id,
-                                  "title": BigInfoProvider.title,
-                                  "mission": BigInfoProvider.mission,
-                                  "roomImage": BigInfoProvider.roomImage,
-                                  "code": BigInfoProvider.code,
-                                  "users_id": [UserProvider.userId],
-                                  "users_name": [UserProvider.userName],
-                                  'users_job': {
-                                    UserProvider.userId: BigInfoProvider.job
-                                  },
-                                });
+                        ),
+                        const SizedBox(height: 38),
+                        Container(
+                          width: 343,
+                          height: 45,
+                          margin: const EdgeInsets.only(left: 25, right: 25),
+                          child: ElevatedButton(
+                            onPressed: () async {
+                              _generateRandom4Digit();
+                              final docRef = FirebaseFirestore.instance
+                                  .collection("Biginfo")
+                                  .doc();
+                              await docRef.set({
+                                registerTimeFieldName:
+                                    FieldValue.serverTimestamp(),
+                                idFieldName: docRef.id,
+                                "title": BigInfoProvider.title,
+                                "mission": BigInfoProvider.mission,
+                                "roomImage": BigInfoProvider.roomImage,
+                                "code": BigInfoProvider.code,
+                                "users_id": [UserProvider.userId],
+                                "users_name": [UserProvider.userName],
+                                'users_job': {
+                                  UserProvider.userId: BigInfoProvider.job
+                                },
+                              });
 
-                                final docRef2 = FirebaseFirestore.instance
-                                    .collection("Smallinfo")
-                                    .doc(docRef.id);
-                                final notificationRef =
-                                    docRef2.collection("notifications").doc();
-                                await notificationRef.set({
-                                  "id": notificationRef.id,
-                                  "title": "",
-                                  "context": "",
-                                  "Image": "",
-                                });
-                                Navigator.pop(context);
-                                // ignore: use_build_context_synchronously
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => Room(
-                                      id: docRef.id,
-                                    ),
+                              final docRef2 = FirebaseFirestore.instance
+                                  .collection("Smallinfo")
+                                  .doc(docRef.id);
+                              final notificationRef =
+                                  docRef2.collection("notifications").doc();
+                              await notificationRef.set({
+                                "id": notificationRef.id,
+                                "title": "",
+                                "context": "",
+                                "Image": "",
+                              });
+                              Navigator.pop(context);
+                              // ignore: use_build_context_synchronously
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => Room(
+                                    id: docRef.id,
                                   ),
-                                );
-                              },
-                              style: ElevatedButton.styleFrom(
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(
-                                        12), // 버튼 모서리 둥글기 설정
-                                  ),
-                                  backgroundColor:
-                                      Color.fromRGBO(54, 209, 0, 1)),
-                              child: Text(
-                                '완료하기',
-                                style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w700,
                                 ),
+                              );
+                            },
+                            style: ElevatedButton.styleFrom(
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(
+                                      12), // 버튼 모서리 둥글기 설정
+                                ),
+                                backgroundColor:
+                                    const Color.fromRGBO(54, 209, 0, 1)),
+                            child: const Text(
+                              '완료하기',
+                              style: TextStyle(
+                                fontSize: 16,
+                                fontWeight: FontWeight.w700,
                               ),
                             ),
                           ),
-                        ],
-                      )),
-                  SizedBox(height: 16.0),
-                ],
-              ),
+                        ),
+                      ],
+                    )),
+                const SizedBox(height: 16.0),
+              ],
             ),
           );
         } else {
@@ -169,65 +165,63 @@ class _RoomImageSetState extends State<RoomImageSet> {
             height: 250,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(23), color: Colors.white),
-            child: Container(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Center(
-                    child: Container(
-                      margin: EdgeInsets.only(top: 16),
-                      width: 48,
-                      height: 3.346,
-                      decoration: BoxDecoration(
-                        color: Color(0xFFAAAAAA),
-                        borderRadius: BorderRadius.circular(10),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Center(
+                  child: Container(
+                    margin: const EdgeInsets.only(top: 16),
+                    width: 48,
+                    height: 3.346,
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFAAAAAA),
+                      borderRadius: BorderRadius.circular(10),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 13),
+                Container(
+                  margin: const EdgeInsets.only(left: 25, top: 14),
+                  child: Text(
+                    '방에 들어갈 이미지는 무엇인가요?',
+                    style:
+                        blackw700.copyWith(fontSize: 18, letterSpacing: -1),
+                  ),
+                ),
+                const SizedBox(height: 5),
+                Container(
+                  margin: const EdgeInsets.only(left: 25),
+                  child: Text(
+                    "이미지를 가져올 곳을 선택해주세요",
+                    style: greyw500.copyWith(fontSize: 14, letterSpacing: -1),
+                  ),
+                ),
+                Container(
+                  width: 343,
+                  height: 60,
+                  margin: const EdgeInsets.only(left: 25, right: 25, top: 38),
+                  child: ElevatedButton(
+                    onPressed: () {
+                      _getPhotoLibraryImage();
+                    },
+                    style: ElevatedButton.styleFrom(
+                      shape: RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.circular(12), // 버튼 모서리 둥글기 설정
                       ),
+                      elevation: 0, // 이 부분을 추가하여 쉐도우 없앰
+                      backgroundColor: const Color.fromRGBO(255, 239, 244, 1),
+                    ),
+                    child: const Text(
+                      '갤러리',
+                      style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.w700,
+                          color: Color.fromRGBO(239, 89, 125, 1)),
                     ),
                   ),
-                  SizedBox(height: 13),
-                  Container(
-                    margin: EdgeInsets.only(left: 25, top: 14),
-                    child: Text(
-                      '방에 들어갈 이미지는 무엇인가요?',
-                      style:
-                          blackw700.copyWith(fontSize: 18, letterSpacing: -1),
-                    ),
-                  ),
-                  SizedBox(height: 5),
-                  Container(
-                    margin: EdgeInsets.only(left: 25),
-                    child: Text(
-                      "이미지를 가져올 곳을 선택해주세요",
-                      style: greyw500.copyWith(fontSize: 14, letterSpacing: -1),
-                    ),
-                  ),
-                  Container(
-                    width: 343,
-                    height: 60,
-                    margin: EdgeInsets.only(left: 25, right: 25, top: 38),
-                    child: ElevatedButton(
-                      onPressed: () {
-                        _getPhotoLibraryImage();
-                      },
-                      style: ElevatedButton.styleFrom(
-                        shape: RoundedRectangleBorder(
-                          borderRadius:
-                              BorderRadius.circular(12), // 버튼 모서리 둥글기 설정
-                        ),
-                        elevation: 0, // 이 부분을 추가하여 쉐도우 없앰
-                        backgroundColor: Color.fromRGBO(255, 239, 244, 1),
-                      ),
-                      child: Text(
-                        '갤러리',
-                        style: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.w700,
-                            color: Color.fromRGBO(239, 89, 125, 1)),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
+                ),
+              ],
             ),
           );
         }
@@ -240,37 +234,6 @@ class _RoomImageSetState extends State<RoomImageSet> {
     int fourDigitRandom = random.nextInt(10000); // 0부터 9999까지의 난수 생성
     String formattedRandom = fourDigitRandom.toString().padLeft(4, '0');
     BigInfoProvider.code = formattedRandom;
-  }
-
-  _showBottomSheet() {
-    return showModalBottomSheet(
-      context: context,
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-          top: Radius.circular(25),
-        ),
-      ),
-      builder: (context) {
-        return Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-            const SizedBox(
-              height: 20,
-            ),
-            const Divider(
-              thickness: 3,
-            ),
-            const SizedBox(
-              height: 10,
-            ),
-            ElevatedButton(
-              onPressed: () => _getPhotoLibraryImage(),
-              child: const Text('라이브러리에서 불러오기'),
-            ),
-          ],
-        );
-      },
-    );
   }
 
   _getPhotoLibraryImage() async {
@@ -289,9 +252,6 @@ class _RoomImageSetState extends State<RoomImageSet> {
   }
 
   String? _uploadedImageUrl; // 업로드 된 이미지 URL 저장 변수 추가
-  Future<String> _getUploadedImageUrl(Reference ref) async {
-    return await ref.getDownloadURL();
-  }
 
   _uploadImageToFirebase() async {
     await Firebase.initializeApp();
@@ -305,7 +265,7 @@ class _RoomImageSetState extends State<RoomImageSet> {
     // 선택한 파일에서 이미지 데이터 읽기
     final imageBytes = await File(_pickedFile!.path).readAsBytes();
     // Firebase Storage에 이미지를 업로드할 위치에 대한 참조 생성
-    final imageName = DateTime.now().microsecond.toString() + '.jpg';
+    final imageName = '${DateTime.now().microsecond}.jpg';
     final storageReference = FirebaseStorage.instance.ref(imageName);
 
     try {
